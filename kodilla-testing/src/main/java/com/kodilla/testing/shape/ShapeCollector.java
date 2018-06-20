@@ -4,23 +4,24 @@ import java.util.ArrayList;
 
 public class ShapeCollector{
 
-    private Shape shape;
     public ArrayList<Shape> shapeCollection = new ArrayList<Shape>();
 
-    public ShapeCollector(Shape shape) {
-        this.shape = shape;
-    }
-
-    void addFigure(Shape shape, ArrayList<Shape> shapeCollection){
+    int addFigure(Shape shape){
         shapeCollection.add(shape);
+        return shapeCollection.size();
     }
 
-    void removeFigure(Shape shape, ArrayList<Shape> shapeCollection ){
-        shapeCollection.remove(shapeCollection.size()-1);
+    boolean removeFigure(Shape shape){
+        boolean result;
+        if (shapeCollection.contains(shape)){
+            shapeCollection.remove(shape);
+            result = true;
+        } else { result = false;}
+        return result;
     }
 
-    public Shape getFigure(int n, ArrayList<Shape> shapeCollection){
-        return shapeCollection.get(n);
+    public String getFigure(int n){
+        return shapeCollection.get(n).getShapeName();
     }
 
     public void showFigures() {
