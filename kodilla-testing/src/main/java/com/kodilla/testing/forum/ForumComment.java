@@ -1,4 +1,4 @@
-package com.kodilla.testing.forum;
+package com.kodilla.testing.forum;]
 
 import java.util.Objects;
 
@@ -45,3 +45,5 @@ public class ForumComment {
         return result;
     }
 }
+
+
