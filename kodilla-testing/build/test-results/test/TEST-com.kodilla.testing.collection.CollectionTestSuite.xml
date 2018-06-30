@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.testing.collection.CollectionTestSuite" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-06-29T17:19:52" hostname="DESKTOP-CNFIKEE" time="0.009">
+  <properties/>
+  <testcase name="testOddNumbersExterminatorEmptyList" classname="com.kodilla.testing.collection.CollectionTestSuite" time="0.007"/>
+  <testcase name="testOddNumbersExterminatorNormalList" classname="com.kodilla.testing.collection.CollectionTestSuite" time="0.001"/>
+  <system-out><![CDATA[Test Suite: begin
+Test Case: begin
+Testing []
+Testing []
+[]is empty as it should:)
+Test Case: end
+Test Case: begin
+Testing [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Testing [2, 4, 6, 8, 10]
+Testing [2, 4, 6, 8, 10]
+Test Case: end
+Test Suite: end
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
