@@ -1,32 +1,23 @@
 package com.kodilla.stream.world;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
-import java.util.*;
-
-public final class Continent {
+public class Continent {
     private final String continentName;
-    private final Set<Country> theCountryList = new HashSet<>();
+    private final Set<Country> countries = new HashSet<>();
 
-    public Continent(String continentName) {
+    public Continent(final String continentName) {
         this.continentName = continentName;
     }
 
     public void addCountry(Country country) {
-        if country.getLocation().equals(this.continentName) {
-            theCountryList.add(country);
-        }
+        countries.add(country);
     }
 
-    public boolean removeCountry(Country country) {
-        return theCountryList.remove(country);
-    }
-
-    public String getContinentName() {
-        return continentName;
-    }
-
-    public Set<Country> getTheCountryList() {
-        return theCountryList;
+    public Set<Country> getCountries() {
+        return countries;
     }
 
     @Override

@@ -1,20 +1,15 @@
 package com.kodilla.stream.world;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-public final class Country {
+public class Country {
     private final String countryName;
-    private final String peopleQuantity;
-    private final String location;
-    private final Set<Country> countries = new HashSet<>();
+    private final BigDecimal peopleQuantity;
 
-    public Country(final String countryName, final String peopleQuantity, final String location) {
+    public Country(final String countryName, final BigDecimal peopleQuantity) {
         this.countryName = countryName;
         this.peopleQuantity = peopleQuantity;
-        this.location = location;
     }
 
     public String getCountryName() {
@@ -22,20 +17,14 @@ public final class Country {
     }
 
     public BigDecimal getPeopleQuantity() {
-            BigDecimal convertedPeopleQuantity = new BigDecimal(this.peopleQuantity);
-            return convertedPeopleQuantity;
-    }
-
-    public String getLocation() {
-        return location;
+        return peopleQuantity;
     }
 
     @Override
     public String toString() {
         return "Country{" +
                 "countryName='" + countryName + '\'' +
-                ", peopleQuantity='" + peopleQuantity + '\'' +
-                ", location='" + location + '\'' +
+                ", peopleQuantity=" + peopleQuantity +
                 '}';
     }
 
@@ -44,11 +33,12 @@ public final class Country {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Country country = (Country) o;
-        return Objects.equals(countryName, country.countryName);
+        return Objects.equals(countryName, country.countryName) &&
+                Objects.equals(peopleQuantity, country.peopleQuantity);
     }
 
     @Override
     public int hashCode() {
-        return countryName.hashCode();
+        return Objects.hash(countryName, peopleQuantity);
     }
 }
