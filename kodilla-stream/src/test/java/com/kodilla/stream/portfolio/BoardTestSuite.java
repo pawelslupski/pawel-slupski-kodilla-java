@@ -1,16 +1,12 @@
 package com.kodilla.stream.portfolio;
 
-import com.jayway.jsonpath.internal.function.numeric.Average;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.summingLong;
 import static java.util.stream.Collectors.toList;
 
 public class BoardTestSuite {

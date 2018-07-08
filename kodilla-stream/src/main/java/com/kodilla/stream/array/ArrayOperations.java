@@ -1,9 +1,5 @@
 package com.kodilla.stream.array;
 
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
-
-import java.util.Arrays;
-import java.util.OptionalDouble;
 import java.util.stream.IntStream;
 
 public class ArrayOperations {
