@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" tests="7" skipped="0" failures="0" errors="0" timestamp="2018-06-29T17:19:52" hostname="DESKTOP-CNFIKEE" time="0.505">
+<testsuite name="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" tests="7" skipped="0" failures="0" errors="0" timestamp="2018-07-09T20:08:52" hostname="DESKTOP-CNFIKEE" time="0.426">
   <properties/>
-  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfMoreCommentsThanPosts" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.494"/>
+  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfMoreCommentsThanPosts" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.422"/>
   <testcase name="testCalculateAdvStatisticsWithMockInCaseOfZeroPosts" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.001"/>
-  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfZeroUsers" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.001"/>
-  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfZeroComments" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.001"/>
+  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfZeroUsers" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.0"/>
+  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfZeroComments" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.0"/>
   <testcase name="testCalculateAdvStatisticsWithMockInCaseOfThousandPosts" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.001"/>
-  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfLessCommentsThanPosts" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.002"/>
-  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfHundredUsers" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.002"/>
+  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfLessCommentsThanPosts" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.0"/>
+  <testcase name="testCalculateAdvStatisticsWithMockInCaseOfHundredUsers" classname="com.kodilla.testing.forum.statistics.CalculatedStatisticsTestSuite" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
