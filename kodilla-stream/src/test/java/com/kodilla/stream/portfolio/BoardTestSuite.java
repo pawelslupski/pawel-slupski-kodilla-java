@@ -166,4 +166,22 @@ public class BoardTestSuite {
         Assert.assertEquals(3, theNumberOfElements);
         Assert.assertEquals(10.0, theAverageOfDaysPerTask, 0.001);
     }
+
+    @Test
+    public void testAddTaskListAverageWorkingOnTaskSecondOption() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgresssTasks = new ArrayList<>();
+        inProgresssTasks.add(new TaskList("In progress"));
+        double  average = project.getTaskLists().stream()
+                .filter(inProgresssTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .mapToLong(t -> ChronoUnit.DAYS.between(t.getCreated(), LocalDate.now()))
+                .average().getAsDouble();
+
+        //Then
+        Assert.assertEquals(10.0, average, 0.01);
+    }
 }
