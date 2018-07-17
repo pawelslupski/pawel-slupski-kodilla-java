@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.kodilla.stream.wolrd.WorldTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-07-09T20:08:50" hostname="DESKTOP-CNFIKEE" time="0.002">
+<testsuite name="com.kodilla.stream.wolrd.WorldTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-07-16T17:43:43" hostname="DESKTOP-CNFIKEE" time="0.005">
   <properties/>
-  <testcase name="testGetPeopleQuantity" classname="com.kodilla.stream.wolrd.WorldTestSuite" time="0.002"/>
+  <testcase name="testGetPeopleQuantity" classname="com.kodilla.stream.wolrd.WorldTestSuite" time="0.005"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
