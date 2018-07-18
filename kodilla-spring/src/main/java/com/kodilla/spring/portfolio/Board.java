@@ -23,18 +23,15 @@ public final class Board {
         doneList.getTasks().add(task);
     }
 
-    public void showTasksOfToDoList() {
-        toDoList.getTasks().stream()
-                .forEach(System.out::println);
+    public String getTasksOfToDoList() {
+        return toDoList.getTasks().get(0);
     }
 
-    public void showTasksOfInProgressList() {
-        inProgressList.getTasks().stream()
-                .forEach(System.out::println);
+    public String getTasksOfInProgressList() {
+        return inProgressList.getTasks().get(0);
     }
 
-    public void showTasksOfDoneList() {
-        doneList.getTasks().stream()
-                .forEach(System.out::println);
+    public String getTasksOfDoneList() {
+        return doneList.getTasks().get(0);
     }
 }
