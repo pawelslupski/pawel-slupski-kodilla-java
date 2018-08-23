@@ -97,9 +97,12 @@ public class CompanyDaoTestSuite {
 
         //When
         List<Employee> employeesWithTheName = employeeDao.retrieveEmployeesWithTheName("John");
+        List<Company> companiesWithTheNameBeginningWith =
+                companyDao.retrieveCompaniesWithTheNameBeginningWith("Gre");
 
         //Then
         Assert.assertEquals(1, employeesWithTheName.size());
+        Assert.assertEquals(1, companiesWithTheNameBeginningWith.size());
 
         //CleanUp
         try {
