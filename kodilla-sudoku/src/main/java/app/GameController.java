@@ -2,6 +2,7 @@ package app;
 
 import data.SudokuBoard;
 import data.SudokuElement;
+import utils.SudokuSolver;
 import java.util.*;
 
 public class GameController {
@@ -11,6 +12,7 @@ public class GameController {
 
     private Scanner scanner;
     private SudokuBoard board;
+    private SudokuSolver sudokuSolver;
     private Random random;
     String option = "";
     String adding = "";
@@ -18,7 +20,8 @@ public class GameController {
     public GameController() {
         scanner = new Scanner(System.in);
         random = new Random();
-        board = new SudokuBoard();
+        this.board = new SudokuBoard();
+        this.sudokuSolver = new SudokuSolver(board);
     }
 
     public void controlLoop() {
@@ -38,15 +41,7 @@ public class GameController {
                     System.out.println(board);
                     break;
                 case SUDOKU:
-                    fillTheRow(0);
-                    fillTheRow(1);
-                    fillTheRow(2);
-                    fillTheRow(3);
-                    fillTheRow(4);
-                    fillTheRow(5);
-                    fillTheRow(6);
-                    fillTheRow(7);
-                    fillTheRow(8);
+                    sudokuSolver.fillTheBoard();
                     break;
                 case EXIT:
                     System.out.println("Thanks for the game! Hope to see you soon:)");
@@ -72,41 +67,8 @@ public class GameController {
         System.out.println(" or type \"SUDOKU\" to solve the game,");
         System.out.println(" or please press \"X\" to exit the game.");
     }
-
-    private void fillTheRow(int x) {
-        //fill int the row "0" with particular unique digits
-        //creating ArrayList of Possible Digits
-        List<SudokuElement> elementsInTheRow = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            elementsInTheRow.add(new SudokuElement(i + 1));
-        }
-        //checking the row for digits that already exist and removes those chosen by player
-        for (int y = 0; y < 9; y++) {
-            if (board.getElement(x, y) != null) {
-                SudokuElement chosenElement = board.getElement(x, y);
-                Iterator<SudokuElement> iter = elementsInTheRow.iterator();
-                while (iter.hasNext()) {
-                    SudokuElement element = iter.next();
-                    if (element.getValue() == chosenElement.getValue()) {
-                        iter.remove();
-                    }
-                }
-            }
-        }
-        //filling the row with shuffled digits
-        while (elementsInTheRow.size() > 0) {
-            Collections.shuffle(elementsInTheRow);
-            for (int y = 0; y < 9; y++) {
-                SudokuElement currentElement = elementsInTheRow.get(0);
-                if (board.getElement(x, y) == null) {
-                    board.setElement(currentElement, x, y);
-                    System.out.println(board);
-                    elementsInTheRow.remove(currentElement);
-                }
-            }
-        }
-    }
-
 }
+
+
 
 
