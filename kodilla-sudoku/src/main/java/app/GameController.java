@@ -1,8 +1,7 @@
 package app;
 
 import data.SudokuBoard;
-import data.SudokuElement;
-import utils.SudokuSolver;
+import data.SudokuSolver;
 import java.util.*;
 
 public class GameController {
@@ -12,7 +11,7 @@ public class GameController {
 
     private Scanner scanner;
     private SudokuBoard board;
-    private SudokuSolver sudokuSolver;
+    private SudokuSolver solver;
     private Random random;
     String option = "";
     String adding = "";
@@ -21,7 +20,7 @@ public class GameController {
         scanner = new Scanner(System.in);
         random = new Random();
         this.board = new SudokuBoard();
-        this.sudokuSolver = new SudokuSolver(board);
+        this.solver = new SudokuSolver(board);
     }
 
     public void controlLoop() {
@@ -37,11 +36,14 @@ public class GameController {
                     int value = Integer.parseInt(adding.substring(0, 1));
                     int row = Integer.parseInt(adding.substring(2, 3));
                     int column = Integer.parseInt(adding.substring(4, 5));
-                    board.setElement(new SudokuElement(value), row, column);
+                    board.setElement(value, row, column);
                     System.out.println(board);
                     break;
                 case SUDOKU:
-                    sudokuSolver.fillTheBoard();
+                    solver.fillTheFirstRow();
+                    solver.fillTheNextRow(1);
+                    solver.fillTheNextRow(2);
+                    System.out.println(board);
                     break;
                 case EXIT:
                     System.out.println("Thanks for the game! Hope to see you soon:)");
@@ -59,7 +61,7 @@ public class GameController {
         System.out.println("Hello " + name + ". Let's begin");
         System.out.println("Initializing the new board.........");
         System.out.println(board);
-        System.out.println("Please fill in your digits in the Sudoku SudokuBoard!");
+        System.out.println("Please fill in your digits in the Sudoku Board!");
     }
 
     private void displayTheOptions() {
