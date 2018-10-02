@@ -12,13 +12,11 @@ public class GameController {
     private Scanner scanner;
     private SudokuBoard board;
     private SudokuSolver solver;
-    private Random random;
     String option = "";
     String adding = "";
 
     public GameController() {
         scanner = new Scanner(System.in);
-        random = new Random();
         this.board = new SudokuBoard();
         this.solver = new SudokuSolver(board);
     }
@@ -36,14 +34,15 @@ public class GameController {
                     int value = Integer.parseInt(adding.substring(0, 1));
                     int row = Integer.parseInt(adding.substring(2, 3));
                     int column = Integer.parseInt(adding.substring(4, 5));
-                    board.setElement(value, row, column);
+                    board.setTheElement(row, column, value);
                     System.out.println(board);
                     break;
                 case SUDOKU:
-                    solver.fillTheFirstRow();
-                    solver.fillTheNextRow(1);
-                    solver.fillTheNextRow(2);
-                    System.out.println(board);
+                    System.out.println("Solving the sudoku board....");
+                    if (solver.solve()) {
+                        System.out.println("Sudoku solved successfully:)");
+                        System.out.println(board);
+                    } else { System.out.println("Unfortunately this sudoku cannot be solved:("); }
                     break;
                 case EXIT:
                     System.out.println("Thanks for the game! Hope to see you soon:)");
@@ -60,6 +59,7 @@ public class GameController {
         String name = scanner.nextLine();
         System.out.println("Hello " + name + ". Let's begin");
         System.out.println("Initializing the new board.........");
+        board.setNewBoard();
         System.out.println(board);
         System.out.println("Please fill in your digits in the Sudoku Board!");
     }

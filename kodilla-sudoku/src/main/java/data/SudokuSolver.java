@@ -1,116 +1,81 @@
 package data;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class SudokuSolver {
     private SudokuBoard board;
-    public static final int INDEX = 0;
+    public final static int EMPTY = 0;
+    public final static int SIZE = 9;
+    public final static int BOX_SIZE = 3;
+    public final static int MIN_VALUE = 1;
+    private final static int MAX_VALUE = 9;
 
     public SudokuSolver(SudokuBoard board) {
         this.board = board;
     }
 
+    // we check if a possible number is already in a row
+    private boolean checkTheRow(int row, int number) {
+        for (int i = 0; i < SIZE; i++)
+            if (board.getSudokuRows().get(row).getElements().get(i).getValue() == number)
+                return true;
 
-    public void filltheBoard() {
-        for (int i = 0; i < SudokuBoard.MAX_ROW_INDEX; i++) {
-            if (i == 0) {
-                fillTheFirstRow();
-            } else {
-                //fillTheRow(i); //temporarily
-            }
-        }
+        return false;
     }
 
-    public void fillTheFirstRow() {
-        List<Integer> possibleDigitsInTheRow = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            possibleDigitsInTheRow.add(i, i + 1);
-        }
+    // we check if a possible number is already in a column
+    private boolean checkTheCol(int col, int number) {
+        for (int i = 0; i < SIZE; i++)
+            if (board.getSudokuRows().get(i).getElements().get(col).getValue() == number)
+                return true;
 
-        List<Integer> alreadyUsed = board.getSudokuRows().get(0).getElements().stream()
-                .filter(SudokuElement -> SudokuElement.getValue() != 0)
-                .map(SudokuElement::getValue)
-                .collect(Collectors.toList());
-
-        if (alreadyUsed.size() > 0) {
-            for (Integer k : alreadyUsed) {
-                possibleDigitsInTheRow.remove(k);
-            }
-        }
-        for (int n = 0; n < SudokuBoard.MAX_COLUMN_INDEX; n++) {
-            if (board.getSudokuRows().get(0).getElements().get(n).getValue() == SudokuElement.EMPTY) {
-                Collections.shuffle(possibleDigitsInTheRow);
-                board.setElement(possibleDigitsInTheRow.get(0), 0, n);
-                possibleDigitsInTheRow.remove(possibleDigitsInTheRow.get(0));
-            } else {
-                continue;
-            }
-        }
+        return false;
     }
 
-    public void fillTheNextRow(int index) {
-        List<Integer> possibleDigitsInTheRow = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            possibleDigitsInTheRow.add(i, i + 1);
-        }
+    // we check if a possible number is in its 3x3 box
+    private boolean checkTheBox(int row, int col, int number) {
+        int startRow = row - row % BOX_SIZE;
+        int startCol = col - col % BOX_SIZE;
+        for (int i = startRow; i < startRow + 3; i++)
+            for (int j = startCol; j < startCol + 3; j++)
+                if (board.getSudokuRows().get(i).getElements().get(j).getValue() == number)
+                    return true;
 
-        List<Integer> alreadyUsed = board.getSudokuRows().get(index).getElements().stream()
-                .filter(SudokuElement -> SudokuElement.getValue() != 0)
-                .map(SudokuElement::getValue)
-                .collect(Collectors.toList());
+        return false;
+    }
 
-        if (alreadyUsed.size() > 0) {
-            for (Integer k : alreadyUsed) {
-                possibleDigitsInTheRow.remove(k);
-            }
-        }
+    // combined method to check if a number possible to a row,col position is ok
+    private boolean canSetValue(int row, int col, int number) {
+        return !checkTheRow(row, number) && !checkTheCol(col, number) && !checkTheBox(row, col, number);
+    }
 
-        for (int n = 0; n < SudokuBoard.MAX_COLUMN_INDEX; n++) {
-            SudokuElement currentSudokuElement = board.getSudokuRows().get(index).getElements().get(n);
-            if (currentSudokuElement.getValue() == SudokuElement.EMPTY) {
-                while (!checkTheColumn(n, possibleDigitsInTheRow.get(0))) {
-                    Collections.shuffle(possibleDigitsInTheRow);
+    // Solve method. We will use a recursive BackTracking algorithm.
+    // we will see better approaches in next video :)
+    public boolean solve() {
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                // we search an empty cell
+                if (board.getSudokuRows().get(row).getElements().get(col).getValue() == EMPTY) {
+                    // we try possible numbers
+                    for (int number = MIN_VALUE; number <= MAX_VALUE; number++) {
+                        if (canSetValue(row, col, number)) {
+                            // number ok. it respects sudoku constraints
+                            board.getSudokuRows().get(row).getElements().get(col).setValue(number);
+
+                            if (solve()) { // we start backtracking recursively
+                                return true;
+                            } else { // if not a solution, we empty the cell and we continue
+                                board.getSudokuRows().get(row).getElements().get(col).setValue(EMPTY);
+                            }
+                        }
+                    }
+                    return false; // we return false
                 }
-                board.setElement(possibleDigitsInTheRow.get(0), index, n);
-                possibleDigitsInTheRow.remove(possibleDigitsInTheRow.get(0));
-            } else {
-                continue;
             }
         }
+        return true; // sudoku solved
     }
 
-    private boolean checkTheColumn(int column, int value) {
-        ArrayList<Integer> alreadyUsedInColumn = board.getSudokuRows().parallelStream()
-                .flatMap(sudokuRow -> sudokuRow.getElements().parallelStream())
-                .filter(SudokuElement -> SudokuElement.getColumn() == column)
-                .map(SudokuElement -> SudokuElement.getValue())
-                .collect(Collectors.toCollection(ArrayList::new));
-        if (alreadyUsedInColumn.contains(value)) {
-            return false;
-        }
-        return true;
-    }
 }
 
-   /* private boolean checkTheBlock (int row, int column, int value) {
-        SudokuElement currentSudokuElement = board.getSudokuElement(row, column);
-        currentSudokuElement.setBlock();
-        int currentBlock = currentSudokuElement.getBlock();
-
-        ArrayList<Integer> alreadyUsedInBlock = board.getSudokuRows().parallelStream()
-                .flatMap(sudokuRow -> sudokuRow.getElements().parallelStream())
-                .filter(SudokuElement -> SudokuElement.getBlock() == currentBlock)
-                .map(SudokuElement -> SudokuElement.getValue())
-                .collect(Collectors.toCollection(ArrayList::new));
-        if(alreadyUsedInBlock.contains(value)) {
-            return false;
-        }
-        return true;
-    }
-*/
 
 
 
