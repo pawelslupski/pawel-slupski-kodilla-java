@@ -1,6 +1,6 @@
 package com.kodilla.patterns.builder.checkers;
 
-public final class FigureFactory {
+public class FigureFactory {
     public static final String PAWN = "PAWN";
     public static final String QUEEN = "QUEEN";
 

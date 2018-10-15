@@ -24,7 +24,7 @@ public final class Pizza {
         }
 
         public PizzaBuilder ingredient(String ingredient) {
-            ingredients.add(ingredient);
+            this.ingredients.add(ingredient);
             return this;
         }
 

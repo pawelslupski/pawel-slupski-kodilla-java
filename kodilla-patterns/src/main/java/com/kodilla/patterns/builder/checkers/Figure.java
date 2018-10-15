@@ -7,13 +7,13 @@ public class Figure {
 
     public Figure(String color) {
         if (color.equals(WHITE) || color.equals(BLACK)) {
-                this.color = color;
+            this.color = color;
         } else {
-                throw new IllegalStateException("Figures of checkers should be BLACK or WHITE!");
+            throw new IllegalStateException("Figures of checkers should be BLACK or WHITE!");
         }
     }
 
     public String getColor() {
-            return color;
+        return color;
     }
 }

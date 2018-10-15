@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Calculator {
-
     @Autowired
-    private Display display;
+    Display display;
 
     public double addAToB(double a, double b) {
         display.displayValue(a + b);

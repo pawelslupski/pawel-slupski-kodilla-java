@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class RockPaperScissors {
     private Scanner scanner;
     private Random random;
-    private String name;
     private int rounds;
     public static final String ROCK = "ROCK";
     public static final String PAPER = "PAPER";
@@ -20,7 +19,6 @@ public class RockPaperScissors {
     public void entryToTheGame() {
         System.out.println("Welcome in the \"Rock, Paper, Scissors Game\". What is your name?");
         String name = scanner.nextLine();
-        this.name = name;
         System.out.println("Hello " + name + ". To how many winning rounds would you like to play?");
         int rounds = scanner.nextInt();
         this.rounds = rounds;

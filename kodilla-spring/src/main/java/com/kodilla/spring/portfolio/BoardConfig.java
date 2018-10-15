@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class BoardConfig {
-
     @Autowired
     @Qualifier("toDoList")
     private TaskList toDoList;
@@ -27,16 +26,19 @@ public class BoardConfig {
     }
 
     @Bean("toDoList")
+    @Scope("prototype")
     public TaskList getToDoList() {
         return new TaskList();
     }
 
     @Bean("inProgressList")
+    @Scope("prototype")
     public TaskList getInProgressList() {
         return new TaskList();
     }
 
     @Bean("doneList")
+    @Scope("prototype")
     public TaskList getDoneList() {
         return new TaskList();
     }

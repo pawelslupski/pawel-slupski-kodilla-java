@@ -19,21 +19,22 @@ public class Board {
         board[x][y] = figure;
     }
 
+    @Override
     public String toString() {
-        String result = "";
-        for(int n = MIN_INDEX; n <= MAX_INDEX; n++) {
-            result += "|";
-            for(int k = MIN_INDEX; k <= MAX_INDEX; k++) {
-                if(board[n][k] == null) {
-                    result += "  ";
-                } else {
-                    result += (board[n][k]).getColor().equals(Figure.BLACK) ? "b" : "w";
-                    result += (board[n][k]) instanceof Pawn ? "P" : "Q";
-                }
+            String result = "";
+            for (int n = MIN_INDEX; n <= MAX_INDEX; n++) {
                 result += "|";
+                for (int k = MIN_INDEX; k <= MAX_INDEX; k++) {
+                    if (board[n][k] == null) {
+                        result += " ";
+                    } else {
+                        result += (board[n][k]).getColor().equals(Figure.BLACK) ? "b" : "w";
+                        result += (board[n][k]) instanceof Pawn ? "P" : "Q";
+                    }
+                    result += "|";
+                }
+                result += "\n";
             }
-            result += "\n";
-        }
-        return result;
+            return result;
     }
 }

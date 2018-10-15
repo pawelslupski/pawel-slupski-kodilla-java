@@ -46,7 +46,6 @@ public class LibraryTestSuite {
         System.out.println("===== Beans list: ==== >>");
         Arrays.stream(context.getBeanDefinitionNames())
                 .forEach(System.out::println);
-        System.out.println("<< ===== Beans list ====");
-
+        System.out.println("<< ===== Beans list ==== >>");
     }
 }

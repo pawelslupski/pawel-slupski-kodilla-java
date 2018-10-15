@@ -8,12 +8,12 @@ public class PizzaTestSuite {
     public void testPizzaNew() {
         //Given
         Pizza pizza = new Pizza.PizzaBuilder()
-                .ingredient("Onion")
-                .bottom("Thin")
-                .sauce("Spicy")
-                .ingredient("Ham")
-                .ingredient("Mushrooms")
-                .build();
+                            .ingredient("Onion")
+                            .bottom("Thin")
+                            .sauce("Spicy")
+                            .ingredient("Ham")
+                            .ingredient("Mushrooms")
+                            .build();
         System.out.println(pizza);
         //When
         int howManyIngredients = pizza.getIngredients().size();

@@ -7,17 +7,17 @@ import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
-        Forum theForum = new Forum();
+        Forum forum = new Forum();
+            Map<Integer, ForumUser> theMapOfForumUsers = forum.getList().stream()
+                    .filter(forumUser -> forumUser.getSex() == 'M')
+                    .filter(forumUser -> forumUser.getDateOfBirth().getYear() <= 1998)
+                    .filter(forumUser -> forumUser.getPostQuantity() >= 1)
+                    .collect(Collectors.toMap(ForumUser::getIdNumber, forumUser -> forumUser));
 
-        Map<Integer, ForumUser> theResultMapOfForumUsers = theForum.getList().stream()
-                .filter(forumUser -> forumUser.getSex() == 'M')
-                .filter(forumUser -> forumUser.getDateOfBirth().getYear() >= 1998)
-                .filter(forumUser -> forumUser.getPostQuantity() >= 1)
-                .collect(Collectors.toMap(ForumUser::getIdNumber, forumUser -> forumUser));
-
-        System.out.println("# elements: " + theResultMapOfForumUsers.size());
-        theResultMapOfForumUsers.entrySet().stream()
-                .map(entry -> entry.getKey() + ": " + entry.getValue())
-                .forEach(System.out::println);
+            System.out.println("#Elements: " + theMapOfForumUsers.size());
+                theMapOfForumUsers.entrySet().stream()
+                        .map(entry -> entry.getKey() + ": " + entry.getValue())
+                        .forEach(System.out::println);
     }
+
 }
