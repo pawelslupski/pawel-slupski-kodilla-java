@@ -50,8 +50,8 @@ public class SearchFacadeTestSuite {
         int greyMatterId = greyMatter.getId();
 
         //When
-        List<Company> companiesWithTheNameFragment = searchFacade.findCompaniesBasedOnTheNameFragment("%oft%");
-        List<Employee> employeesWithTheNameFragment = searchFacade.findEmployeesBasedOnTheNameFragment("%ith%");
+        List<Company> companiesWithTheNameFragment = searchFacade.findCompaniesBasedOnTheNameFragment("oft");
+        List<Employee> employeesWithTheNameFragment = searchFacade.findEmployeesBasedOnTheNameFragment("mit");
 
         //Then
         Assert.assertEquals(1, companiesWithTheNameFragment.size());

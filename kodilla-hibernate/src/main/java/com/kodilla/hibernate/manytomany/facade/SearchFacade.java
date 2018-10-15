@@ -20,12 +20,14 @@ public class SearchFacade {
 
     public List<Company> findCompaniesBasedOnTheNameFragment(String arg) {
         LOGGER.info("Searching for companies based on the name fragment: " + arg + "");
-        return companyDao.retrieveCompaniesWithTheNameContaining(arg);
+        String pieceOfCompanyName = new String("%" + arg + "%");
+        return companyDao.retrieveCompaniesWithTheNameContaining(pieceOfCompanyName);
     }
 
     public List<Employee> findEmployeesBasedOnTheNameFragment(String arg) {
         LOGGER.info("Searching for employees based on the name fragment: " + arg + "");
-        return employeeDao.retrieveEmployeesWithTheNameContaining(arg);
+        String pieceOfName = new String("%" + arg + "%");
+        return employeeDao.retrieveEmployeesWithTheNameContaining(pieceOfName);
     }
 
 }
