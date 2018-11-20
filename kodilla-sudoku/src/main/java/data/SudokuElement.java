@@ -9,9 +9,13 @@ public final class SudokuElement {
     public int getValue() {
         return value;}
 
-
     public void setValue(int value) {
-        this.value = value; }
+        if (value >= 0) {
+            this.value = value;
+        } else {
+            System.out.println("Value has to be positive");
+        }
+    }
 
     @Override
     public String toString() {
