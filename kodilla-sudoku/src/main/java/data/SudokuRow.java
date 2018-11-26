@@ -10,6 +10,5 @@ public final class SudokuRow {
 
     public List<SudokuElement> getElements() {
         return elements; }
-
 }
 
